@@ -33,15 +33,18 @@ Route::post('account/{mode}',[AccountController::class, 'store'])->name('account
 
 // DASHBOARD ROUTES
 Route::get('dashboard', [DashboardController::class, 'main'])->name('section.main');
-Route::get('/profile', [AccountController::class, 'show'])->name('user.profile');
 Route::get('/logout', [AccountController::class, 'logout'])->name('user.logout');
 Route::get('dashboard/service', [ServiceController::class, 'index'])->name('section.service');
 Route::get('service/order', [ServiceController::class, 'order'])->name('service.order');
 Route::get('dashboard/account', [AccountController::class, 'show'])->name('section.account');
 Route::get('dashboard/activity', [DashboardController::class, 'activity'])->name('section.activity');
 Route::get('dashboard/transaction', [DashboardController::class, 'transaction'])->name('section.transaction');
+Route::get('dashboard/profile', [AccountController::class, 'show'])->name('user.profile');
 
 Route::get('dashboard/vps/{id}', [VPSController::class, 'terminal'])->name('vps.terminal');
+
+Route::get('/payment', [TransactionController::class, 'formTransact'])->name('payment.form');
+Route::put('/payment/add', [TransactionController::class, 'doTransact'])->name('payment.add');
 
 Route::resource('vps', VPSController::class);
 Route::resource('service', ServiceController::class);
@@ -50,7 +53,6 @@ Route::resource('service', ServiceController::class);
 Route::get('service/update/{id}',[ServiceController::class,'update']);
 
 // Route::get('/service', [ServiceController::class, 'index'])->name('section.service');
-Route::get('/payment', [TransactionController::class, 'doTransact']);
 
 // JSON RESPONSE
 // Route::get('fetch/get-os', [VPSController::class, 'getOSNames']);

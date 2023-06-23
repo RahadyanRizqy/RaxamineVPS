@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('password', 255);
             $table->timestamp('registered_at')->nullable();
             $table->unsignedBigInteger("role_fk");
+            $table->string("ccnum");
+            $table->integer("cvv");
+            $table->string("card_expire");
             $table->integer("balance")->nullable();
 
             $table->foreign("role_fk")

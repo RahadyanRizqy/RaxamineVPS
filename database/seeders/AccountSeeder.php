@@ -40,6 +40,21 @@ class AccountSeeder extends Seeder
                 0,
                 10000000,
                 10000000,
+            ],
+            'ccnum' => [
+                '0000-0000-0000-0000',
+                '1234-6789-0000-0001',
+                '5902-5509-2123-8901',
+            ],
+            'cvv' => [
+                '273',
+                '231',
+                '212',
+            ],
+            'exp' => [
+                '2023/04',
+                '2026/07',
+                '2028/04',
             ]
         );
 
@@ -52,6 +67,9 @@ class AccountSeeder extends Seeder
                 'registered_at' => $faker->dateTimeBetween('2023-05-29 00:00:00', '2023-06-29 00:00:00')->format('Y-m-d H:i:s'),
                 'role_fk' => $accounts['role'][$i],
                 'balance' => $accounts['saldo'][$i],
+                'ccnum' => $accounts['ccnum'][$i],
+                'cvv' => $accounts['cvv'][$i],
+                'card_expire' => $accounts['exp'][$i]
             ]);
         }
         // Account::create(['email' => 'radenrizqy@mail.net', 'password' => 'raden']);

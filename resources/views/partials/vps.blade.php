@@ -2,8 +2,13 @@
 
 @section('title', 'Raxamine VPS')
 
+@push('style')
+    <link rel="stylesheet" href="{{asset('assets/css/vps.css')}}">
+@endpush
+
 @section('content')
 
+<section id="order-form">
 <form action="{{ route('service.store') }}" method="post">
     @csrf
     <div class="form-group">
@@ -95,10 +100,13 @@
     <div id="vps_total_price"></div>
     <input type="hidden" name="vps_total_price" id="selections-input">
 
-    <button type="submit" class="btn form-button btn-primary mt-2">Pesan</button>
-    <button type="button" class="btn form-button btn-dark mt-2" onclick="location.href='{{ url()->previous() }}'">Kembali</button>
+    
+    <div>
+        <button type="submit" class="btn form-button btn-success">Pesan</button>
+        <a href="{{ url()->previous() }}" class="btn form-button btn-dark">Kembali</a>
+    </div>
 </form>
-
+</section>
 
 <!-- Include the jQuery library -->
 <script>
@@ -176,7 +184,7 @@
                 selections = 0;
             }
 
-            $('#vps_total_price').text(selections);
+            $('#vps_total_price').text("Harga: " + selections);
             $('#selections-input').val(selections);
         });
 

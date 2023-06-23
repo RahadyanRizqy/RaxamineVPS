@@ -1,17 +1,17 @@
-{{-- <h1>Riwayat Aktivitas</h1>
-<h1>{{ Auth::user()->fullname ?? 'Null' }}</h1>
-<h3>{{ Auth::user()->email ?? 'Null' }}</h3> --}}
 <div class="activity">
-    <table class="table">
+    <table class="table table-bordered">
         <tr>
             <th>No</th>
             <th>Aktivitas</th>
-            <th>Tanggal</th>
+            <th>Tanggal / Waktu</th>
         </tr>
+        {{-- {{ $i = 0 }} --}}
+        @foreach ($activities as $a)    
         <tr>
-            <td>A</td>
-            <td>B</td>
-            <td>C</td>
+            <td>{{$a->id}}</td>
+            <td>{{$a->detail}}</td>
+            <td>{{$a->activity_at}}</td>
         </tr>
+        @endforeach
     </table>
 </div>

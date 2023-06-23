@@ -13,16 +13,15 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->string("transaction_id")->unique();
-            $table->boolean("status");
+            $table->boolean("status")->default(1);
             $table->unsignedBigInteger("ordered_vps_id")->nullable();
             $table->timestamp("ordered_at");
 
-            // $table->foreign("ordered_vps_id")
-            //     ->references("id")
-            //     ->on("services")
-            //     ->onDelete('set null')
-            //     ->onUpdate('set null');
+            $table->foreign("ordered_vps_id")
+                ->references("id")
+                ->on("services")
+                ->onDelete('set null')
+                ->onUpdate('set null');
         });
     }
 

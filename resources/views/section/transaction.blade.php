@@ -2,18 +2,20 @@
 <h1>{{ Auth::user()->fullname ?? 'Null' }}</h1>
 <h3>{{ Auth::user()->email ?? 'Null' }}</h3> --}}
 <div class="activity">
-    <table class="table">
+    <table class="table table-bordered">
         <tr>
-            <th>No</th>
-            <th>Transaksi</th>
-            <th>Order VPS</th>
-            <th>Tanggal</th>
+            <th>ID Transaksi</th>
+            <th>ID VPS Yang Diorder</th>
+            <th>Total Harga</th>
+            <th>Tanggal / Waktu</th>
         </tr>
+        @foreach ($transaction as $t)
         <tr>
-            <td>A</td>
-            <td>B</td>
-            <td>C</td>
-            <td>D</td>
+            <td>{{$t->id ?? null}}</td>
+            <td>{{$t->transactions->id ?? null}}</td>
+            <td>Rp{{$t->vps_total_price}}</td>
+            <td>{{$t->transactions->ordered_at}}</td>
         </tr>
+        @endforeach
     </table>
 </div>

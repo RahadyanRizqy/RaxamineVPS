@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activity;
 use App\Models\Service;
+use App\Models\Transaction;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,14 +19,14 @@ class DashboardController extends Controller
 
     public function activity()
     {
-        $activities = [1,2,3];
+        $activities = Activity::where('account_fk', Auth::id())->get();
         return view('dashboard', ['section' => 'activity'])->with(compact('activities'));
         
     }
 
     public function transaction()
     {
-        $transactions = [4,5,6];
-        return view('dashboard', ['section' => 'transaction'])->with(compact('transactions'));
+        $transaction = Service::with('transactions')->where('account_fk', Auth::id())->get();
+        return view('dashboard', ['section' => 'transaction'])->with(compact('transaction'));
     }
 }

@@ -13,8 +13,6 @@ class Transaction extends Model
 
     protected $table = "transactions";
 
-    protected $primaryKey = 'transaction_id';
-
     public $timestamps = false;
 
     public function services()
@@ -22,12 +20,17 @@ class Transaction extends Model
         return $this->belongsTo(Service::class, 'ordered_vps_id');
     }
 
-    protected static function boot()
-    {
-        parent::boot();
+    // protected static function boot()
+    // {
+    //     parent::boot();
 
-        static::creating(function ($model) {
-            $model->transaction_id = str_pad(static::count() + 1, 4, '0', STR_PAD_LEFT);
-        });
+    //     static::creating(function ($model) {
+    //         $model->transaction_id = str_pad(static::count() + 1, 4, '0', STR_PAD_LEFT);
+    //     });
+    // }
+
+    public function insertActivity($data)
+    {
+        $this->insert($data);
     }
 }

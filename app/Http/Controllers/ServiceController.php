@@ -15,6 +15,7 @@ use App\Models\Server;
 use App\Models\Version;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Service;
+use App\Models\Transaction;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -86,6 +87,12 @@ class ServiceController extends Controller
         $activity->insertActivity([
             'detail' => "Telah memesan VPS dengan ID " . "$primaryKey",
             'account_fk' => $account->id,
+            'activity_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        $transaction = new Transaction;
+        $transaction->insertActivity([
+            'ordered_vps_id' => $primaryKey
         ]);
 
         return redirect()->route('section.main');

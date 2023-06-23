@@ -60,6 +60,9 @@ class AccountController extends Controller
                     'fullname' => 'required',
                     'email' => 'required',
                     'password' => 'required',
+                    'ccnum' => 'required',
+                    'cvv' => 'required',
+                    'card_exp' => 'required',
                 ]);
     
                 $credentials['role_fk'] = 2;
@@ -80,7 +83,9 @@ class AccountController extends Controller
      */
     public function show()
     {
-        return view('partials.profile', ['account' => Auth::user()]);
+        // return view('section.profile', ['account' => Auth::user()]);
+        // view('dashboard', ['section' => 'activity'])
+        return view('dashboard', ['section' => 'profile'])->with('account', Auth::user());
     }
 
     /**

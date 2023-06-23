@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
             $table->string("detail");
+            $table->timestamp("activity_at")->nullable();
             $table->unsignedBigInteger("account_fk");
 
             $table->foreign("account_fk")

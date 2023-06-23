@@ -38,58 +38,6 @@ class VPSController extends Controller
     }
 
 
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Service $service)
-    {
-        // IF ADMIN
-        // $service = Service::with(['operating_systems', 'versions', 'cpus', 'cores', 'rams', 'roms', 'servers.locations', 'servers.bandwidths', 'accounts'])->find(4);
-        // $services = Service::with(['versions.operating_systems', 'versions', 'cores.cpus', 'cores', 'rams', 'roms', 'servers.locations', 'servers.bandwidths', 'accounts'])->find($service)->get();
-        // return view('partials.service', ['service' => $service]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Account $account)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Account $account)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Account $account)
-    {
-        //
-    }
-
     public function getVersions(Request $request)
     {
         // $versions = VPS::where('name', $request->os_name)->pluck('version')->first();

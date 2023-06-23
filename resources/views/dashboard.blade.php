@@ -1,118 +1,106 @@
-@extends('master')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  @if($section == 'activity')
+    <title>Activity</title>
+  @elseif($section == 'transaction')
+    <title>Transaction</title>
+  @elseif($section == 'profile')
+    <title>Profile</title>
+  @else
+    <title>Main Dashboard</title>
+  @endif
+<link rel="stylesheet" href="{{asset('assets/css/dashboard.css')}}">
 
-@section('title', 'Raxamine VPS')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-@push('style')
-<style>
-    .img-logo {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-    }
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="#" class="logo">
+          <img src="{{ asset('assets/image/vps.png') }}" alt="">
+          <span class="nav-item">Dashboard</span>
+        </a></li>
+        <li><a href="{{route('section.main')}}">
+          <i class="fas fa-home"></i>
+          <span class="nav-item">Home</span>
+        </a></li>
+        <li><a href="{{ route('user.profile') }}">
+          <i class="fas fa-user"></i>
+          <span class="nav-item">Profile</span></a></li>
+          {{-- <li><a href="">
+              <i class="fas fa-chart-bar"></i>
+              <span class="nav-item">Analis</span>
+            </a></li> --}}
+        <li><a href="{{ route('section.activity') }}">
+            <i class="fas fa-tasks"></i>
+            <span class="nav-item">Aktivitas</span>
+        </a></li>
+        <li><a href="{{ route('section.transaction') }}">
+            <i class="fas fa-wallet"></i>
+            <span class="nav-item">Transaksi</span>
+        </a></li>
+            {{-- <li><a href="">
+          <i class="fas fa-cog"></i>
+          <span class="nav-item">Settings</span>
+        </a></li> --}}
+        <li><a href="https://wa.me/+6288804897436">
+          <i class="fas fa-question-circle"></i>
+          <span class="nav-item">Help</span>
+        </a></li>
+        <li><a href="{{ route('user.logout') }}" class="logout">
+          <i class="fas fa-sign-out-alt"></i>
+          <span class="nav-item">Logout</span>
+        </a></li>
+      </ul>
+    </nav>
 
-    .pc-logo {
-        /* position: absolute;
-        top: 25%;
-        left: 50%;
-        width: 50%;
-        height: auto;
-        transform: translate(-50%, -50%); */
-        z-index: 1;
-        /* filter: brightness(0) invert(1); */
-    }
-
-    .os-logo {
-        position: absolute;
-        z-index: 2;
-    }
-
-    /* .grid-container {
-        display: grid;
-        grid-template-columns: auto auto auto auto auto;
-        padding: 20px;
-        grid-gap: 20px;
-    } */
-
-    .grid-container {
-        display: grid;
-        grid-template-columns: repeat(5, 0fr); /* Adjust the number of columns as needed */
-        gap: 50px;
-/* Adjust the gap between cells as needed */
-    }
-    
-    .cell {
-        width: 155px;
-        height: 175px; /* Adjust the height of cells as needed */
-        background-color: rgb(221, 221, 221); /* Change the background color of cells as needed */
-        /* cursor: pointer; */
-        border: 2px solid black;
-    }
-
-    .add-logo {
-        position: absolute;
-        top: 35%;
-        left: 50%;
-        width: 50%;
-        height: auto;
-        transform: translate(-50%, -50%);
-        /* z-index: 1; */
-        /* filter: brightness(0) invert(1); */
-    }
-
-    /* .card-add {
-
-    } */
-
-    .ellipsis-icon:after {
-        content: '\2807';
-        position: absolute;
-        bottom: 1px;
-        right: 1px;
-        font-size: 20px;
-        border-radius: 20%;
-        /* background-color: white; */
-        cursor: pointer;
-    }
-
-    .card-add {
-        /* border-style: solid; */
-        cursor: pointer;
-    }
-
-    .card-content {
-        inline-size: 150px;
-        overflow-wrap: break-word;
-        /* border-style: solid; */
-        cursor: pointer;
-    }
-
-    p {
-        margin-bottom: 0;
-    }
-</style> 
-@endpush
-
-@section('content')
-<h1>Dashboard</h1>
-<a href="{{ route('section.main') }}">Home</a>
-@if(Auth::user()->role_fk == 1)
-<a href="{{ route('section.account')}}">Data Akun</a>
-@endif
-<a href="{{ route('user.profile') }}">Profil</a>
-<a href="{{ route('user.logout') }}">Logout</a>
-<a href="{{ route('section.service') }}">Layanan</a>
-<a href="{{ route('section.activity') }}">Aktivitas</a>
-<a href="{{ route('section.transaction') }}">Transaksi</a>
-{{-- @php
-$section = '';
-@endphp --}}
-@if($section == 'activity')
-    @include('section.activity')
-@elseif($section == 'transaction')
-    @include('section.transaction')
-@else
-    @include('section.main')
-@endif
-
-@endsection
+    <section class="main">
+        @if($section == 'activity')
+            @include('section.activity')
+        @elseif($section == 'transaction')
+            @include('section.transaction')
+        @elseif($section == 'profile')
+            @include('section.profile')
+        @else
+            @include('section.main')
+        @endif
+      {{-- <section class="main-course">
+        <h1>My courses</h1>
+        <div class="course-box">
+          <ul>
+            <li class="active">In Progress</li>
+            <li>Explore</li>
+            <li>Incoming</li>
+            <li>Finished</li>
+          </ul>
+          <div class="course">
+            <div class="box">
+              <h3>HTML</h3>
+              <p>80% - progress</p>
+              <button>continue</button>
+              <i class="fab fa-html5 html"></i>
+            </div>
+            <div class="box">
+              <h3>CSS</h3>
+              <p>50% - progress</p>
+              <button>continue</button>
+              <i class="fab fa-css3-alt css"></i>
+            </div>
+            <div class="box">
+              <h3>JavaScript</h3>
+              <p>30% - progress</p>
+              <button>continue</button>
+              <i class="fab fa-js-square js"></i>
+            </div>
+          </div>
+        </div>
+      </section> --}}
+    </section>
+  </div>
+</body>
+</html>
