@@ -42,7 +42,7 @@ class CoreSeeder extends Seeder
         ];
         for ($i = 0; $i < count($cpu['core']); $i++) {
             Core::create([
-                'core_qty' => $cpu['core'][$i],
+                'core_label_qty' => $cpu['core'][$i],
                 'cpu_fk' => $cpu['cpu_type'][$i],
                 'core_price' => $cpu['core_price'][$i],
             ]);

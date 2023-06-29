@@ -28,7 +28,7 @@ Route::get('/', function () {
 Route::resource('account', AccountController::class);
 Route::get('/login', [AccountController::class, 'index'])->name('account.index');
 Route::get('/register', [AccountController::class, 'create'])->name('account.create');
-Route::post('account/{mode}',[AccountController::class, 'store'])->name('account.store');
+Route::post('user/{mode}',[AccountController::class, 'store'])->name('account.store');
 
 
 // DASHBOARD ROUTES
@@ -40,24 +40,24 @@ Route::get('dashboard/account', [AccountController::class, 'show'])->name('secti
 Route::get('dashboard/activity', [DashboardController::class, 'activity'])->name('section.activity');
 Route::get('dashboard/transaction', [DashboardController::class, 'transaction'])->name('section.transaction');
 Route::get('dashboard/profile', [AccountController::class, 'show'])->name('user.profile');
-
 Route::get('dashboard/vps/{id}', [VPSController::class, 'terminal'])->name('vps.terminal');
 
+// PAYMENT SIMULATION
 Route::get('/payment', [TransactionController::class, 'formTransact'])->name('payment.form');
 Route::put('/payment/add', [TransactionController::class, 'doTransact'])->name('payment.add');
 
 Route::resource('vps', VPSController::class);
 Route::resource('service', ServiceController::class);
 
-// AJAX USAGE
+// AJAX USAGE TO STORE LAST LOGIN
 Route::get('service/update/{id}',[ServiceController::class,'update']);
 
 // Route::get('/service', [ServiceController::class, 'index'])->name('section.service');
 
-// JSON RESPONSE
-// Route::get('fetch/get-os', [VPSController::class, 'getOSNames']);
+// JSON RESPONSES
+Route::get('fetch/get-versions-2', [VPSController::class, 'getVersions2']);
 Route::post('fetch/get-versions', [VPSController::class, 'getVersions']);
-// Route::get('fetch/get-cores-2', [VPSController::class, 'getCores2']);
+Route::get('fetch/get-cores-2', [VPSController::class, 'getCores2']);
 Route::post('fetch/get-cores', [VPSController::class, 'getCores']);
 // Route::get('fetch/get-storage', [VPSController::class, 'getStorages']);
 // Route::get('fetch/get-jsoned', [VPSController::class, 'getJSONed']);

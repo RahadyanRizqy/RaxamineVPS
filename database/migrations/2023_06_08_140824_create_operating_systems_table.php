@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('operating_systems', function (Blueprint $table) {
             $table->id();
             $table->string("name");
+            $table->string("versions"); // JSON VALUES
             $table->integer("price");
         });
     }

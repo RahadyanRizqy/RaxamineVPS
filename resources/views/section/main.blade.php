@@ -26,14 +26,11 @@
           </div>
       </div>   
   @endforeach
-  <div class="cell">
+  <div class="card cell">
       <div class="card-add" onclick="window.location.href='{{ route('service.order') }}'">
           <img src="{{ asset('assets/image/plus2.png')}}" alt="Card image cap" width="100px">
           <p style="font-size: 15px; font-weight: 500;">Tambah</p>
       </div>
-      {{-- <div class="ellipsis">
-          <div class="ellipsis-icon" onclick="window.location.href='{{ route('user.profile') }}'"></div>
-      </div> --}}
   </div>        
 </div>
     {{-- <div class="card">

@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             AccountSeeder::class,
             OSSeeder::class,
-            VersionSeeder::class,
+            // VersionSeeder::class,
             MemoryTypeSeeder::class,
             MemorySeeder::class,
             BandwidthSeeder::class,
@@ -24,9 +24,9 @@ class DatabaseSeeder extends Seeder
             ServerSeeder::class,
             CPUSeeder::class,
             CoreSeeder::class,
-            ServiceSeeder::class,
+            // ServiceSeeder::class,
             // ActivitySeeder::class,
-            TransactionSeeder::class,
+            // TransactionSeeder::class,
         ];
 
         $this->call($seeders);

@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Account;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 use function PHPUnit\Framework\throwException;
 
@@ -17,7 +20,7 @@ class AccountController extends Controller
      */
     public function index()
     {
-        return view('usersession.login');
+        return view('usersession.login', ['session' => 'Masuk']);
     }
 
     /**
@@ -25,7 +28,7 @@ class AccountController extends Controller
      */
     public function create()
     {
-        return view('usersession.register');
+        return view('usersession.register', ['session' => 'Daftar']);
     }
 
     /**
@@ -33,48 +36,61 @@ class AccountController extends Controller
      */
     public function store(Request $request, $mode)
     {
-        try 
-        {
-            if ($mode == 'login') {
-                $credentials = $request->validate([
-                    'email' => 'required',
-                    'password' => 'required',
+        if ($mode == 'login') {
+            try
+            {
+                $validator = Validator::make($request->all(), [
+                    'email' => ['required', 'regex:/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/'],
+                    'password' => ['required', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[~!@#$%^&*()_=\-+[\]{}"\\|\'\';:,.\/<>?])[A-Za-z\d~!@#$%^&*()_=\-+[\]{}"\\|\'\';:,.\/<>?]{8,}$/'],
                 ]);
-                if (Auth::attempt($credentials)) 
-                {
+    
+                if ($validator->fails()) {
+                    return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput();
+                }
+    
+                $credentials = $request->only('email', 'password');
+    
+                if (Auth::attempt($credentials)) {
                     $request->session()->regenerate();
-                    
-                    if (Auth::user()->role_fk == 2) 
-                    {
-                        return redirect()->route('section.main');
-                    }
                     return redirect()->route('section.main');
                 }
-                else {
+    
+                else 
+                {
                     return redirect()->back()->withErrors(['error' => 'Akun tidak ditemukan']);
                 }
             }
-            else if ($mode == 'register')
+            catch (Exception $e)
             {
+                throwException($e);
+            }
+        }
+        else if ($mode == 'register')
+        {
+            try {
                 $credentials = $request->validate([
                     'fullname' => 'required',
-                    'email' => 'required',
-                    'password' => 'required',
-                    'ccnum' => 'required',
-                    'cvv' => 'required',
-                    'card_exp' => 'required',
+                    'email' => ['required', 'regex:/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/'],
+                    'password' => ['required', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[~!@#$%^&*()_=\-+[\]{}"\\|\'\';:,.\/<>?])[A-Za-z\d~!@#$%^&*()_=\-+[\]{}"\\|\'\';:,.\/<>?]{8,}$/'],
+                    'cc_number' => 'nullable',
+                    'cc_cvv' => 'nullable',
+                    'cc_expire' => 'nullable',
                 ]);
     
                 $credentials['role_fk'] = 2;
                 $credentials['registered_at'] = Carbon::now()->format('Y-m-d H:i:s');
                 $credentials['password'] = Hash::make($credentials['password']);
     
-                Account::create($credentials);
-                return redirect()->route('account.index');
+                // Account::create($credentials);
+                // return redirect()->route('account.index');
+                dd($credentials);
             }
-
-        } catch (\Exception $e) {
-            throwException($e);
+            catch (Exception $e)
+            {
+                throwException($e);
+            }
         }
     }
 

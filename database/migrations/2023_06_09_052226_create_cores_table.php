@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('cores', function (Blueprint $table) {
             $table->id();
-            $table->integer("core_qty");
+            $table->integer("core_label_qty");
+            $table->integer("core_stock_qty")->nullable();
+            $table->integer("core_sold_qty")->nullable();
+            $table->integer("core_price")->nullable();
             $table->unsignedBigInteger("cpu_fk");
-            $table->integer("core_price");
 
             $table->foreign("cpu_fk")
                 ->references("id")

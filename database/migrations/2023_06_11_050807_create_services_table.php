@@ -34,11 +34,11 @@ return new class extends Migration
             //     ->onDelete('cascade')
             //     ->onUpdate('cascade');
 
-            $table->foreign("vps_version")
-                ->references("id")
-                ->on("versions")
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+            // $table->foreign("vps_version")
+            //     ->references("id")
+            //     ->on("versions")
+            //     ->onDelete('cascade')
+            //     ->onUpdate('cascade');
 
             // $table->foreign("vps_cpu")
             //     ->references("id")

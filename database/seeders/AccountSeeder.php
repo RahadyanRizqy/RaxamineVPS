@@ -27,9 +27,9 @@ class AccountSeeder extends Seeder
                 'sometimesone@triots.com',
             ],
             'password' => [
-                'rahadyanrizqy',
-                'titanangga',
-                'ahmadamin',
+                'RadenRizqy2023!',
+                'TitanAngga2004!',
+                'AhmadAmin2005!',
             ],
             'role' => [
                 1,
@@ -67,9 +67,9 @@ class AccountSeeder extends Seeder
                 'registered_at' => $faker->dateTimeBetween('2023-05-29 00:00:00', '2023-06-29 00:00:00')->format('Y-m-d H:i:s'),
                 'role_fk' => $accounts['role'][$i],
                 'balance' => $accounts['saldo'][$i],
-                'ccnum' => $accounts['ccnum'][$i],
-                'cvv' => $accounts['cvv'][$i],
-                'card_expire' => $accounts['exp'][$i]
+                'cc_number' => $accounts['ccnum'][$i],
+                'cc_cvv' => $accounts['cvv'][$i],
+                'cc_expire' => $accounts['exp'][$i]
             ]);
         }
         // Account::create(['email' => 'radenrizqy@mail.net', 'password' => 'raden']);

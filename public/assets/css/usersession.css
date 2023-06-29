@@ -1,0 +1,125 @@
+body {
+    background: rgb(30,124,199);
+    background: linear-gradient(80deg, rgba(30,124,199,1) 0%, rgba(161,236,255,1) 60%, rgba(142,144,237,1) 100%);
+}
+
+.password-input-container {
+    position: relative;
+}
+
+.password-input-container .fa-eye-slash,
+.password-input-container .fa-eye {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+    /* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.form-control {
+    z-index: 1;
+}
+
+.form-group:hover .form-control:not(:focus)::-webkit-input-placeholder {
+    opacity: 0;
+}
+
+.form-group .form-control::-webkit-input-placeholder {
+    transition: opacity 0.3s ease;
+    opacity: 1;
+}
+
+.register-form-container {
+    background-color: rgb(230, 242, 254);
+    padding: 10px 25px 0px 25px;
+    border-radius: 25px;
+    box-shadow: 0 50px 100px rgba(0, 0, 0, 0.1);
+    z-index: 0;
+    width: 40%;
+}
+
+.login-form-container {
+    background-color: rgb(230, 242, 254);
+    padding: 10px 25px 0px 25px;
+    border-radius: 25px;
+    box-shadow: 0 50px 100px rgba(0, 0, 0, 0.1);
+    z-index: 0;
+}
+
+/* .form-group {
+    margin-top: 5px;
+} */
+
+.form-email-warning,
+.form-password-warning {
+    display: none;
+}
+
+small {
+    margin-top: 3px;
+    font-size: 11px;
+    color: red;
+}
+
+.form-group {
+    margin-top: 20px;
+}
+
+.warning-container {
+    display: block;
+    position: absolute;
+    width: 21em;
+    margin-left: 5px;
+    /* text-align: right; */
+    /* border: 1px solid black; */
+    /* border-radius: 3px; */
+    /* background-color: white; */
+    z-index: 2;
+}
+
+.space {
+    margin-bottom: 25px;
+}
+
+.submit-btn {
+    margin-top: 25px;
+}
+
+.toasted {
+    position: fixed;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    opacity: 0;
+  }
+  
+.show-toast {
+    top: 15px;
+    opacity: 1;
+}
+
+.fade-out-toast {
+    opacity: 0;
+}
+  
+
+p {
+    margin: auto;
+}

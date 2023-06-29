@@ -61,11 +61,11 @@ class VPSController extends Controller
         return json_encode($result); 
     }
 
-    // public function getCores2(Request $request)
-    // {
-    //     $result = CPUType::with('cores')->find(1)->cores;
-    //     return json_encode($result); 
-    // }
+    public function getCores2(Request $request)
+    {
+        // $result = CPUType::with('cores')->find(1)->cores;
+        // return json_encode($result); 
+    }
 
 
     public function getStorage(Request $request)
